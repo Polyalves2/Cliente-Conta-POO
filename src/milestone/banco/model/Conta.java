@@ -47,7 +47,6 @@ public class Conta {
          }
          saldo = saldo.subtract(valor);
      }
-    }
 
     /*
      * Método recebe um valor do tipo BigDecimal que deve incrementado
