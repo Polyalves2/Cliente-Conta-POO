@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /*
  * Programação Orientada a Objetos
  * Milestone 2
- * Discente:
+ * Discente:Polyana Giselle Alves Batista
  * 
  */
 public class Cliente {
@@ -28,7 +28,10 @@ public class Cliente {
      * true. Caso contrário, false.
      */
     public boolean adicionarConta(Conta conta) {
-        
+    	  if (localizarConta(conta.getNumero()) == null) {
+              contas.add(conta);
+              return true;
+          }
     	return false;
     }
 
@@ -40,7 +43,11 @@ public class Cliente {
      * deve-se retornar true. Caso contrário, false.
      */
     public boolean removerConta(String numeroConta) {
-        
+    	 Conta conta = localizarConta(numeroConta);
+         if (conta != null) {
+             contas.remove(conta);
+             return true;
+         }
     	return false;
     }
 
@@ -52,7 +59,11 @@ public class Cliente {
      * 
      */
     public Conta localizarConta(String numeroConta) {
-        
+    	for (Conta conta : contas) {
+            if (conta.getNumero().equals(numeroConta)) {
+                return conta;
+            }
+        }
     	return null;
     }
     

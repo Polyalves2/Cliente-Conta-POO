@@ -7,7 +7,7 @@ import java.util.Objects;
 /*
  * Programação Orientada a Objetos
  * Milestone 2
- * Discente:
+ * Discente:Polyana Giselle Alves Batista 
  * 
  */
 public class Conta {
@@ -39,7 +39,14 @@ public class Conta {
      * throw new IllegalArgumentException("Saldo insuficiente ou conta inativa.");
      */
     public void sacar(BigDecimal valor) {
-        
+    	 if (!status) {
+             throw new IllegalArgumentException("Conta inativa.");
+         }
+         if (valor.compareTo(BigDecimal.ZERO) <= 0 || valor.compareTo(saldo) > 0) {
+             throw new IllegalArgumentException("Saldo insuficiente ou valor inválido.");
+         }
+         saldo = saldo.subtract(valor);
+     }
     }
 
     /*
@@ -50,7 +57,13 @@ public class Conta {
      * throw new IllegalArgumentException("Saldo insuficiente ou conta inativa.");
      */
     public void depositar(BigDecimal valor) {
-        
+    	 if (!status) {
+             throw new IllegalArgumentException("Conta inativa.");
+         }
+         if (valor.compareTo(BigDecimal.ZERO) <= 0) {
+             throw new IllegalArgumentException("Valor inválido.");
+         }
+         saldo = saldo.add(valor);
     }
 
     /*
@@ -63,7 +76,14 @@ public class Conta {
      * throw new IllegalArgumentException("Saldo insuficiente ou conta inativa.");
      */
     public void transferir(Conta destino, BigDecimal valor) {
-        
+    	 if (!status || !destino.isStatus()) {
+             throw new IllegalArgumentException("Conta de origem ou destino está inativa.");
+         }
+         if (valor.compareTo(BigDecimal.ZERO) <= 0 || valor.compareTo(saldo) > 0) {
+             throw new IllegalArgumentException("Saldo insuficiente ou valor inválido.");
+         }
+         saldo = saldo.subtract(valor);
+         destino.depositar(valor);
     }
     
     //Não alterar os métodos abaixo 
